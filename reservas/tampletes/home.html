@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hotel</title>
+</head>
+
+<body>
+
+    <h1>Hotel Paradise</h1>
+
+    <h2>Quartos disponíveis</h2>
+
+    {% for quarto in quartos %}
+
+    <div>
+        <h3>Quarto {{ quarto.numero }}</h3>
+
+        <p>Tipo: {{ quarto.tipo }}</p>
+
+        <p>Preço: R$ {{ quarto.preco }}</p>
+    </div>
+
+    <hr>
+
+    {% endfor %}
+
+</body>
+
+</html>
