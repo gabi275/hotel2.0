@@ -1,29 +1,296 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 
 <head>
-    <title>Hotel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Hotel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #222;
+            font-size: 40px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #2563eb;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        .item {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .acoes {
+            margin-top: 10px;
+        }
+
+        .editar {
+            text-decoration: none;
+            background: #16a34a;
+            color: white;
+            padding: 7px 12px;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+
+        .excluir {
+            text-decoration: none;
+            background: #dc2626;
+            color: white;
+            padding: 7px 12px;
+            border-radius: 6px;
+        }
+
+        .vazio {
+            color: gray;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Hotel Paradise</h1>
+    <h1>SISTEMA HOTEL</h1>
 
-    <h2>Quartos disponíveis</h2>
+    <div class="container">
 
-    {% for quarto in quartos %}
+        <!-- QUARTOS -->
+        <div class="card">
 
-    <div>
-        <h3>Quarto {{ quarto.numero }}</h3>
+            <h2>QUARTOS</h2>
 
-        <p>Tipo: {{ quarto.tipo }}</p>
+            <a class="btn" href="/quartos/novo/">
+                Cadastrar Quarto
+            </a>
 
-        <p>Preço: R$ {{ quarto.preco }}</p>
+            {% for q in quartos %}
+
+            <div class="item">
+
+                <strong>{{ q }}</strong>
+
+                <div class="acoes">
+                    <a class="editar" href="/quartos/editar/{{ q.id }}/">
+                        Editar
+                    </a>
+
+                    <a class="excluir" href="/quartos/excluir/{{ q.id }}/">
+                        Excluir
+                    </a>
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <p class="vazio">Nenhum quarto cadastrado.</p>
+
+            {% endfor %}
+
+        </div>
+
+
+
+
+
+        <!-- CLIENTES -->
+        <div class="card">
+
+            <h2>CLIENTES</h2>
+
+            <a class="btn" href="/clientes/novo/">
+                Cadastrar Cliente
+            </a>
+
+            {% for c in clientes %}
+
+            <div class="item">
+
+                <strong>{{ c }}</strong>
+
+                <div class="acoes">
+                    <a class="editar" href="/clientes/editar/{{ c.id }}/">
+                        Editar
+                    </a>
+
+                    <a class="excluir" href="/clientes/excluir/{{ c.id }}/">
+                        Excluir
+                    </a>
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <p class="vazio">Nenhum cliente cadastrado.</p>
+
+            {% endfor %}
+
+        </div>
+
+
+
+
+
+        <!-- RESERVAS -->
+        <div class="card">
+
+            <h2>RESERVAS</h2>
+
+            <a class="btn" href="/reservas/novo/">
+                Cadastrar Reserva
+            </a>
+
+            {% for r in reservas %}
+
+            <div class="item">
+
+                <strong>{{ r }}</strong>
+
+                <div class="acoes">
+                    <a class="editar" href="/reservas/editar/{{ r.id }}/">
+                        Editar
+                    </a>
+
+                    <a class="excluir" href="/reservas/excluir/{{ r.id }}/">
+                        Excluir
+                    </a>
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <p class="vazio">Nenhuma reserva cadastrada.</p>
+
+            {% endfor %}
+
+        </div>
+
+
+
+
+
+        <!-- FUNCIONARIOS -->
+        <div class="card">
+
+            <h2>FUNCIONÁRIOS</h2>
+
+            <a class="btn" href="/funcionarios/novo/">
+                Cadastrar Funcionário
+            </a>
+
+            {% for f in funcionarios %}
+
+            <div class="item">
+
+                <strong>{{ f }}</strong>
+
+                <div class="acoes">
+                    <a class="editar" href="/funcionarios/editar/{{ f.id }}/">
+                        Editar
+                    </a>
+
+                    <a class="excluir" href="/funcionarios/excluir/{{ f.id }}/">
+                        Excluir
+                    </a>
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <p class="vazio">Nenhum funcionário cadastrado.</p>
+
+            {% endfor %}
+
+        </div>
+
+
+
+
+
+        <!-- PAGAMENTOS -->
+        <div class="card">
+
+            <h2>PAGAMENTOS</h2>
+
+            <a class="btn" href="/pagamentos/novo/">
+                Cadastrar Pagamento
+            </a>
+
+            {% for p in pagamentos %}
+
+            <div class="item">
+
+                <strong>{{ p }}</strong>
+
+                <div class="acoes">
+                    <a class="editar" href="/pagamentos/editar/{{ p.id }}/">
+                        Editar
+                    </a>
+
+                    <a class="excluir" href="/pagamentos/excluir/{{ p.id }}/">
+                        Excluir
+                    </a>
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <p class="vazio">Nenhum pagamento cadastrado.</p>
+
+            {% endfor %}
+
+        </div>
+
     </div>
-
-    <hr>
-
-    {% endfor %}
 
 </body>
 
